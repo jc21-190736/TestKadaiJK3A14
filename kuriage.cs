@@ -8,7 +8,7 @@ namespace _12_10
 {
     public class kuriage
     {
-        public static int Kuriage10(int j)
+        public static int kuriage10(int j)
         {
             if (j % 10 != 0)
             {

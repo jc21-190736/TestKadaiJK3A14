@@ -9,7 +9,7 @@ namespace _12_10
     public class JetCoaster
     {
 
-       public static int Ride(int k,int[] g,int r)
+       public static int ride(int k,int[] g,int r)
         {
 
             int ninzu = 0; //人数
