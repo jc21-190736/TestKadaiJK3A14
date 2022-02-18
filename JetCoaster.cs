@@ -9,61 +9,50 @@ namespace _12_10
     public class JetCoaster
     {
 
-       public static int ride(int k,int[] g,int r)
+
+
+        public static int ride
+        (int k, int[] g, int r)
         {
+            int youso = 0;//配列の要素
+            int goukei = 0;//乗った人数の合計
 
-            int ninzu = 0; //人数
-            int a = k;//現在人数制限
-            int count = 0;
-
-            for (int j = 0; ; j += 1)//配列カウント
+            if (g.Length == 0)//行列が0の場合の処理
+            {
+                return 0;
+            }
+            while (r > 0)
+            {
+                int i = 0;//1回ごとに乗る人数
+                int count = youso;//要素が同じものを読み込まないよう判定するためのポインタ
+                while (i < k + 1)//今の人数と乗れる人数の比較（乗れる上限の数を含む）
                 {
-                count += 1;
-                if (count < g.Length)//同じ人が乗らないように
-                {
-
-
-
-                    if (r == 0)//rまで回す
+                    i += g[youso];
+                    if (i > k)//上でいれた人数が超えていたら超えた分を除外する
                     {
+                        i -= g[youso];
+                        goukei += i;
+
                         break;
                     }
+                    youso += 1;
 
-                    if (j > g.Length - 1)//配列上限まで行ったら最初に戻る
+                    if (youso > g.Length - 1)//ypousoが配列を超えたとき0に戻す処理
                     {
-                        j = 0;
+                        youso = 0;
                     }
-
-                    if (g.Length == 0)//配列は入っていないとき０
+                    if (youso == count)//yousoが１回の乗車で乗る人に同じ人を参照したときの処理
                     {
-                        return 0;
-                    }
-
-                    if (g[j] <= a)//人数はいるとき
-                    {
-                        ninzu += g[j];
-                        a -= g[j];
-                    }
-
-                    else//人数はいらないとき
-                    {
-
-                        a = k;
-                        r -= 1;
-
-                        if (j <= g.Length - 1)
-                        {
-                            j -= 1;
-                        }
-                        else
-                        {
-                            j = g.Length - 1;
-                        }
+                        goukei += i;
+                        break;
                     }
                 }
+                r -= 1;
             }
-
-             return ninzu;
+            return goukei;
         }
+
+
+
     }
 }
